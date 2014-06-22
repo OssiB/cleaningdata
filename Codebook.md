@@ -1,4 +1,4 @@
-Getting and cleanign the data codebook
+Getting and cleaning the data codebook
 ======================================
 
 We use following files

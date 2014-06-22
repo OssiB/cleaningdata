@@ -23,7 +23,7 @@ x_train <- read.table("train/X_train.txt",colClasses="numeric",col.names = featu
 x_train <- x_train[, indexes]
 
 # Test set
-x_test <- read.table("test/X_test.txt",colClasses="character",col.names=features[, 2])
+x_test <- read.table("test/X_test.txt",colClasses="numeric",col.names=features[, 2])
 x_test <- x_test[, indexes]
 
 # Join x_train and x_test
@@ -58,5 +58,8 @@ y_data[,1]<-labels[y_data[,1],2]
 
 
 cleaned_data <-  cbind(activity.label=y_data[, 1],x)
+melted <- melt(cleaned_data,id=c ("subject","activity.label"))
+melted$value <- as.numeric(melted$value)
+tiny_data<-dcast(melted,subject+activity.label~variable,fun.aggregate=mean)
 
 

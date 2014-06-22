@@ -1,3 +1,4 @@
+library(reshape2)
 features <- read.csv("features.txt",sep=" ",header=FALSE)
 
 # Select features with mean() or std() function
@@ -65,4 +66,5 @@ melted <- melt(cleaned_data,id=c ("subject","activity.label"))
 melted$value <- as.numeric(melted$value)
 tiny_data<-dcast(melted,subject+activity.label~variable,fun.aggregate=mean)
 
-
+# Finally writes data with 81 columns and 180 rows to the file named tiny_data.txt
+write.table(tiny_data,"./tiny_data.txt", row.names=FALSE, col.names=TRUE, sep="\t", quote=FALSE)

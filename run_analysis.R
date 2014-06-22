@@ -58,6 +58,9 @@ y_data[,1]<-labels[y_data[,1],2]
 
 
 cleaned_data <-  cbind(activity.label=y_data[, 1],x)
+cleaned_data<-cleaned_data[c]
+# Remove extra id field
+cleaned_data<-cleaned_data[,c(1,3:82)]
 melted <- melt(cleaned_data,id=c ("subject","activity.label"))
 melted$value <- as.numeric(melted$value)
 tiny_data<-dcast(melted,subject+activity.label~variable,fun.aggregate=mean)
